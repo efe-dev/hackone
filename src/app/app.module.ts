@@ -17,6 +17,8 @@ import en from '@angular/common/locales/en';
 registerLocaleData(en);
 
 import { environment } from '../environments/environment';
+import { DatabaseService } from './shared/services/database.service';
+import { EventService } from './shared/services/event.service';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -30,7 +32,11 @@ import { environment } from '../environments/environment';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [
+    { provide: NZ_I18N, useValue: en_US },
+    DatabaseService,
+    EventService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
