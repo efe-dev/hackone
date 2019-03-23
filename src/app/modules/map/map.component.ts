@@ -17,6 +17,7 @@ export class MapComponent implements OnInit {
   public map = mapConfig;
   public markers = [];
   public mapInstance;
+  public firstTime = true;
 
   constructor(public eventService: EventService) {}
 
@@ -25,13 +26,30 @@ export class MapComponent implements OnInit {
   public mapClicked(map) {
     this.removeContextMenu();
     const coords = map.coords;
+    this.eventService.addEvent({
+      address: 'xx',
+      category: 'music,concert,rock',
+      coordinates: {
+        lat: coords.lat,
+        lng: coords.lng
+      },
+      date: new Date().toISOString(),
+      description: 'desc',
+      image: 'imageUrl',
+      name: 'Event name',
+      status: 'Active',
+      type: {
+        description: 'asd',
+        name: 'event'
+      }
+    });
   }
 
   public mapReady(map) {
     this.mapInstance = map;
-    storageService.events.subscribe((events) => {
-      // tslint:disable-next-line:prefer-for-of
+    this.eventService.getAllEvents().then((events) => {
       if (events) {
+        // tslint:disable-next-line:prefer-for-of
         for (let i = 0; i < events.data.length; i++) {
           const event: any = events.data[i];
           const eventData = event[Object.keys(event)[0]];
@@ -39,6 +57,23 @@ export class MapComponent implements OnInit {
           eventData.lat = eventData.coordinates.lat;
           eventData.lng = eventData.coordinates.lng;
           this.markers.push(eventData);
+        }
+      }
+    });
+    this.eventService.listenAllEvents().subscribe((events) => {
+      if (events) {
+        if (!this.firstTime) {
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < events.data.length; i++) {
+            const event: any = events.data[i];
+            const eventData = event[Object.keys(event)[0]];
+            const id = Object.keys(event)[0];
+            eventData.lat = eventData.coordinates.lat;
+            eventData.lng = eventData.coordinates.lng;
+            this.markers.push(eventData);
+          }
+        } else {
+          this.firstTime = false;
         }
       }
     });

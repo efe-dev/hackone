@@ -40,20 +40,20 @@ export class EventService {
       try {
         this.db
           .instance()
-          .ref('events')
+          .ref('events').orderByChild('timestamp').limitToLast(1)
           .on('value', snapshot => {
             if (snapshot.val()) {
-              const events: EventResponse[] = [];
-              const availableEvents = snapshot.val();
-              Object.keys(availableEvents).map((key: string) => {
-                events.push({ [key]: availableEvents[key] });
-              });
-              observer.next({
-                data: events,
-                message: 'Got events',
-                error: null
-              });
-            } else {
+                const events: EventResponse[] = [];
+                const availableEvents = snapshot.val();
+                Object.keys(availableEvents).map((key: string) => {
+                  events.push({ [key]: availableEvents[key] });
+                });
+                observer.next({
+                  data: events,
+                  message: 'Got events',
+                  error: null
+                });
+              } else {
               // little hack
               observer.next({
                 data: [],
