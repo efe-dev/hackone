@@ -1,4 +1,4 @@
-import {IMarkerType} from "./marker-type.model";
+import {IMarkerType} from './marker.model';
 
 export interface IRole {
   name: string;
