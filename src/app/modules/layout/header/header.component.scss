@@ -1,0 +1,112 @@
+.logo {
+  background: url(https://www.katowice.eu/Style%20Library/Images/logo.png) no-repeat;
+  width: 150px;
+  height: 59px;
+  float: left;
+  background-size: 150px;
+  padding: 10px;
+  margin: 5px 20px 0 20px;
+}
+.ant-menu {
+
+  li {
+    outline: none !important;
+  }
+
+}
+
+.ant-menu-item-group-title {
+  background: #5b657b;
+  padding: 6px 16px;
+}
+
+.user-menu {
+  min-width: 180px;
+  text-align: right;
+
+  @media screen and (max-width: 480px) {
+    min-width: 130px;
+  }
+}
+
+.menu-container {
+  line-height: 64px;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-menu-item {
+  flex: 1;
+  border: 0 !important;
+  color: white !important;
+  font-size: 1.2em;
+  margin: 5px;
+  height: 40px;
+  line-height: 40px;
+  transition: none;
+  box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  -webkit-box-sizing: border-box !important;
+}
+
+
+.background-purple {
+  background: #8c347d !important;
+  &:hover  {
+    border-top: 3px solid #752f6a !important;
+    border-bottom: 3px solid #752f6a !important;
+    background: #9e3f8e !important;
+    line-height: 30px;
+  }
+  &.active  {
+    border-top: 3px solid #752f6a !important;
+    border-bottom: 3px solid #752f6a !important;
+    background: #8c347d !important;
+    line-height: 30px;
+  }
+}
+
+.background-red {
+  background: #e61c26 !important;
+  &:hover  {
+    border-top: 3px solid #b12727 !important;
+    border-bottom: 3px solid #b12727 !important;
+    background: #fa0000 !important;
+    line-height: 30px;
+  }
+  &.active  {
+    border-top: 3px solid #b12727 !important;
+    border-bottom: 3px solid #b12727 !important;
+    background: #e61c26 !important;
+    line-height: 30px;
+  }
+}
+
+.background-lime {
+  background: #a6ce39 !important;
+  &:hover  {
+    border-top: 3px solid #95b835 !important;
+    border-bottom: 3px solid #95b835 !important;
+    background: #b8e03f !important;
+    line-height: 30px;
+  }
+  &.active  {
+    border-top: 3px solid #95b835 !important;
+    border-bottom: 3px solid #95b835 !important;
+    background: #a6ce39 !important;
+    line-height: 30px;
+  }
+}
+
+.gradient {
+  padding-bottom:5px;
+  background:
+    linear-gradient(to right, #a3238e 15%,#ed1c24 15%,#ed1c24 30%,#ffcb05 30%,#ffcb05 45%,#61cbe6 45%,#61cbe6 60%,#ec008c 60%,#ec008c 75%,#a6ce39 75%,#a6ce39 90%,#d2ab67 90%)
+    left
+    bottom
+    #fff
+    no-repeat;
+  background-size:100% 5px;
+}

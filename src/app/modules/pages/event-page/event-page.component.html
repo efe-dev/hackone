@@ -1,0 +1,56 @@
+<div class="map-container" style="display: flex">
+  <div class="map-wrapper" style="flex: 1;">
+    <h2>Best events, always fresh!</h2>
+    <app-map></app-map>
+  </div>
+  <div class="recent-events" style="width: 35%; margin-left: 25px;">
+    <h2>Starts soon</h2>
+
+    <div class="event-card-mini">
+      <div class="event-image">
+        <img src="https://picsum.photos/72?random" alt="event-name" />
+      </div>
+
+      <div class="event-details">
+
+        <p class="event-title">
+          Rohan's Exposition
+        </p>
+
+        <p class="event-date">
+          <i nz-icon type="clock-circle" theme="outline"></i>
+          September 10, 2019
+        </p>
+
+        <p class="event-address">
+          <i nz-icon type="environment" theme="outline"></i>
+          Warszawska, 10/7
+        </p>
+
+      </div>
+
+      <div class="event-action">
+        <i nz-icon type="environment" theme="outline"></i>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="map-controls" style="margin: 20px 0;">
+  <strong>Show me: </strong>
+  <nz-tag
+    *ngFor="let category of categories"
+    nzMode="checkable"
+    [nzChecked]="category.selected"
+    (nzCheckedChange)="toggleCategory($event, category)">
+    {{ category.name }}
+  </nz-tag>
+  <a href="/">more...</a>
+</div>
+
+<div>
+  <h1 style="margin-top: 30px;">Events in Katowice</h1>
+</div>
+
+

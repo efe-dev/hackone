@@ -1,0 +1,24 @@
+nz-layout {
+  height: 100%;
+}
+
+.main-layout {
+  height: 100%;
+
+  /* Main content container */
+  nz-content {
+    padding: 50px;
+    margin-top: 5px;
+    background: white;
+    min-height: calc(100vh - 5px - 67px - 66px);
+    padding-top: 35px;
+
+    @media screen and (max-width: 480px) {
+      margin: 0;
+      border-radius: 0;
+      /* no margin */
+      min-height: calc(100vh - 67px - 66px);
+
+    }
+  }
+}

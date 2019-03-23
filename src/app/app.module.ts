@@ -13,6 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+import { PagesModule } from './modules/pages/pages.module';
+import { LayoutModule } from './modules/layout/layout.module';
 
 registerLocaleData(en);
 
@@ -25,18 +27,21 @@ import { EventService } from './shared/services/event.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MapModule,
     NgZorroAntdModule,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    /* OUR MODULES */
+    MapModule,
+    PagesModule,
+    LayoutModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
     DatabaseService,
-    EventService,
+    EventService
   ],
   bootstrap: [AppComponent]
 })

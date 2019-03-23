@@ -1,0 +1,64 @@
+<nz-header style="height: 70px" class="gradient">
+  <div class="logo"></div>
+  <ul nz-menu [nzMode]="'horizontal'" class="menu-container">
+
+    <!--<li nz-menu-item class="only-mobile" (click)="toggleSidebar()">-->
+      <!--<i nz-icon type="menu-unfold" theme="outline"></i>-->
+    <!--</li>-->
+
+    <li nz-menu-item routerLink="/events" routerLinkActive="active" class="hide-mobile top-menu-item background-purple">
+      LIVING CITY
+    </li>
+
+    <li nz-menu-item routerLink="/traffic" routerLinkActive="active" class="hide-mobile top-menu-item background-red">
+      CITY IN MOTION
+    </li>
+
+    <li nz-menu-item routerLink="/atmosphere" routerLinkActive="active" class="hide-mobile top-menu-item background-lime">
+      FRESH AIR
+    </li>
+
+    <!-- RIGHT MENU (reversed order!) -->
+    <li nz-submenu class="right user-menu">
+
+      <span title>
+        <span class="hide-mobile" style="margin-right: 10px;">{{email}}</span>
+        <i nz-icon type="user" theme="outline"></i>
+      </span>
+      <ul>
+
+        <li nz-menu-group>
+          <span title>Actions</span>
+          <ul>
+            <li nz-menu-item (click)="logout()">
+              <i nz-icon type="logout" theme="outline"></i>
+              <!--<i nz-icon type="poweroff" theme="outline"></i>-->
+              Log out
+            </li>
+          </ul>
+        </li>
+
+        <li nz-menu-group>
+          <span title>Account</span>
+          <ul>
+            <li nz-menu-item routerLink="/account/details" routerLinkActive="active">
+              <i nz-icon type="solution" theme="outline"></i>
+              Tagged events
+            </li>
+            <li nz-menu-item routerLink="/account/notifications" routerLinkActive="active">
+              <i nz-icon type="notification" theme="outline"></i>
+              Notifications
+            </li>
+            <li nz-menu-item routerLink="/account/security" routerLinkActive="active">
+              <i nz-icon type="safety" theme="outline"></i>
+              Security
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </li>
+
+  </ul>
+</nz-header>
+<div class="header"></div>

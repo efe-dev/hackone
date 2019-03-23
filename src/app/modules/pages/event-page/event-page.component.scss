@@ -1,0 +1,48 @@
+.event-card-mini {
+  height: 90px;
+  background: #b7c3e01a;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 10px;
+  color: #163550;
+  border-left: 5px solid #f5222d;
+  border-top: 2px solid #f5222d;
+
+  img {
+    border-radius: 10px;
+    height: 100%;
+  }
+
+  .event-details {
+    flex: 1;
+    margin: 0 20px;
+
+    .event-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .event-date {
+      margin-bottom: 3px;
+      font-size: 0.9em;
+    }
+
+    .event-address {
+      font-size: 0.9em;
+    }
+  }
+
+  .event-action {
+    width: 45px;
+    height: 45px;
+    color: white;
+    font-size: 2em;
+    background: #f5222d;
+    border-radius: 50px;
+    align-self: center;
+    text-align: center;
+    margin-right: 15px;
+    cursor: pointer;
+  }
+}
