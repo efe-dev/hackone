@@ -16,17 +16,16 @@ export class AppComponent implements OnInit {
     try {
       const data = await this.eventService.addEvent({
         address: 'xx',
-        category: 'concert',
+        category: 'music,concert,rock',
         coordinates: {
           lat: 50.2649,
           lng: 19.0238
         },
-        date: new Date(),
+        date: new Date().toISOString(),
         description: 'desc',
         image: 'imageUrl',
         name: 'Event name',
         status: 'Active',
-        subcategory: 'country',
         type: {
           description: 'asd',
           name: 'event'
