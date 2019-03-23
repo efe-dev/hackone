@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { DatabaseService } from './database.service';
-import { IEvent, DatabaseResponse, NewEvent, EventResponse } from '../../models/';
+import {
+  IEvent,
+  DatabaseResponse,
+  NewEvent,
+  EventResponse
+} from '../../models/';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -35,25 +40,65 @@ export class EventService {
     });
   }
 
+  public onEventDelete(): Observable<DatabaseResponse<{ eventId: string }>> {
+    return new Observable(observer => {
+      try {
+        this.db
+          .instance()
+          .ref('events')
+          .on('child_removed', snapshot => {
+            observer.next({
+              data: { eventId: snapshot.key },
+              message: `Event with id: ${snapshot.key} deleted`,
+              error: null
+            });
+          });
+      } catch (error) {
+        observer.error(error);
+      }
+    });
+  }
+
+  public onEventUpdate(): Observable<DatabaseResponse<EventResponse>> {
+    return new Observable(observer => {
+      try {
+        this.db
+          .instance()
+          .ref('events')
+          .on('child_changed', snapshot => {
+            observer.next({
+              data: { [snapshot.key]: snapshot.val() },
+              message: `Event with id: ${snapshot.key} updated`,
+              error: null
+            });
+          });
+      } catch (error) {
+        observer.error(error);
+      }
+    });
+  }
+
   public listenAllEvents(): Observable<DatabaseResponse<EventResponse[]>> {
     return new Observable(observer => {
       try {
         this.db
           .instance()
-          .ref('events').orderByChild('timestamp').limitToLast(1)
+          .ref('events')
+          .orderByChild('timestamp')
+          .limitToLast(1)
           .on('value', snapshot => {
             if (snapshot.val()) {
-                const events: EventResponse[] = [];
-                const availableEvents = snapshot.val();
-                Object.keys(availableEvents).map((key: string) => {
-                  events.push({ [key]: availableEvents[key] });
-                });
-                observer.next({
-                  data: events,
-                  message: 'Got events',
-                  error: null
-                });
-              } else {
+              const events: EventResponse[] = [];
+              const availableEvents = snapshot.val();
+              Object.keys(availableEvents).map((key: string) => {
+                events.push({ [key]: availableEvents[key] });
+              });
+              observer.next({
+                data: events,
+                message: 'Got events',
+                error: null
+              });
+            } else {
               // little hack
               observer.next({
                 data: [],
