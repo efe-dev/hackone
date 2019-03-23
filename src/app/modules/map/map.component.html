@@ -16,7 +16,7 @@
       [longitude]="marker.lng"
       [opacity]="marker.alpha"
       [iconUrl]="marker.icon"
-      (markerClick)="selectMarker($event)"
+      (markerClick)="selectMarker(marker)"
       (markerRightClick)="markerOptions(marker.id)"
     >
     </agm-marker>

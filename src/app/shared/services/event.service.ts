@@ -19,7 +19,6 @@ export class EventService {
    * @param event: @IEvent
    */
   public addEvent(event: IEvent): Promise<DatabaseResponse<NewEvent>> {
-    console.log(event);
     return new Promise(async (resolve, reject) => {
       try {
         const { key } = await this.db

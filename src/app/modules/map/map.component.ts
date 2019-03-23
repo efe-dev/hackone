@@ -49,11 +49,11 @@ export class MapComponent implements OnInit {
     this.mapInstance = map;
     this.eventService.getAllEvents().then((events) => {
       if (events) {
-        // tslint:disable-next-line:prefer-for-of
         for (let i = 0; i < events.data.length; i++) {
           const event: any = events.data[i];
           const eventData = event[Object.keys(event)[0]];
           const id = Object.keys(event)[0];
+          eventData.id = id;
           eventData.lat = eventData.coordinates.lat;
           eventData.lng = eventData.coordinates.lng;
           this.markers.push(eventData);
@@ -63,11 +63,11 @@ export class MapComponent implements OnInit {
     this.eventService.listenAllEvents().subscribe((events) => {
       if (events) {
         if (!this.firstTime) {
-          // tslint:disable-next-line:prefer-for-of
           for (let i = 0; i < events.data.length; i++) {
             const event: any = events.data[i];
             const eventData = event[Object.keys(event)[0]];
             const id = Object.keys(event)[0];
+            eventData.id = id;
             eventData.lat = eventData.coordinates.lat;
             eventData.lng = eventData.coordinates.lng;
             this.markers.push(eventData);
@@ -77,10 +77,30 @@ export class MapComponent implements OnInit {
         }
       }
     });
+    this.eventService.onEventUpdate().subscribe((events: any) => {
+      if (events) {
+        const id = events.data.eventId;
+        for (let i = 0; i < this.markers.length; i++) {
+          if (this.markers[i].id === id) {
+            console.log(i);
+          }
+        }
+      }
+    });
+    this.eventService.onEventDelete().subscribe((events: any) => {
+      if (events) {
+        const id = events.data.eventId;
+        for (let i = 0; i < this.markers.length; i++) {
+          if (this.markers[i].id === id) {
+            this.markers.splice(i, 1);
+          }
+        }
+      }
+    });
   }
 
   public selectMarker(marker) {
-    console.log(marker);
+    this.eventService.deleteEvent(marker.id);
   }
 
   public markerOptions(id) {
