@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DatabaseService } from './shared/services/database.service';
-import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { EventService } from './shared/services/event.service';
 
 @Component({
   selector: 'app-root',
@@ -9,18 +7,34 @@ import { of } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(public db: DatabaseService) {}
-
+  constructor(public eventService: EventService) {}
   public ngOnInit() {
-    this.getData();
+    // this.addEvent();
   }
-  /**
-   * Database service sandbox
-   */
-  private getData(): void {
-    this.db
-      .getTest()
-      .pipe(catchError(err => of(`Error ${err}`)))
-      .subscribe(data => console.log(data));
+
+  public async addEvent(): Promise<void> {
+    try {
+      const data = await this.eventService.addEvent({
+        address: 'xx',
+        category: 'concert',
+        coordinates: {
+          lat: 50.2649,
+          lng: 19.0238
+        },
+        date: new Date(),
+        description: 'desc',
+        image: 'imageUrl',
+        name: 'Event name',
+        status: 'Active',
+        subcategory: 'country',
+        type: {
+          description: 'asd',
+          name: 'event'
+        }
+      });
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
