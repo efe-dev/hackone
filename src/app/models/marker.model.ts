@@ -3,7 +3,7 @@
 // lng: number = 19.0238;
 
 
-interface IMarkerType {
+export interface IMarkerType {
   name: 'event' | 'project' | 'idea';
   description: string;
 }
