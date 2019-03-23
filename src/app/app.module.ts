@@ -19,6 +19,7 @@ registerLocaleData(en);
 import { environment } from '../environments/environment';
 import { DatabaseService } from './shared/services/database.service';
 import { EventService } from './shared/services/event.service';
+import { StorageService } from './shared/services/storage.service';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -35,7 +36,8 @@ import { EventService } from './shared/services/event.service';
   providers: [
     { provide: NZ_I18N, useValue: en_US },
     DatabaseService,
-    EventService
+    EventService,
+    StorageService
   ],
   bootstrap: [AppComponent]
 })
