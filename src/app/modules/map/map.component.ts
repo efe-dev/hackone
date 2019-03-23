@@ -2,6 +2,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { mapConfig } from './mapConfig';
 import {} from 'googlemaps';
+import { EventService } from 'src/app/shared/services/event.service';
 
 @Component({
   selector: 'app-map',
@@ -16,24 +17,45 @@ export class MapComponent implements OnInit {
   public markers = [];
   public mapInstance;
 
-  constructor() {}
+  constructor(public eventService: EventService) {}
 
   ngOnInit() {}
 
   public mapClicked(map) {
     this.removeContextMenu();
     const coords = map.coords;
-    this.markers.push({
-      id: 1,
-      title: 'xd',
-      lat: coords.lat,
-      lng: coords.lng,
-      alpha: 1
+    this.eventService.addEvent({
+      address: 'xx',
+      category: 'concert',
+      coordinates: {
+        lat: coords.lat,
+        lng: coords.lng
+      },
+      date: new Date(),
+      description: 'desc',
+      image: 'imageUrl',
+      name: 'Event name',
+      status: 'Active',
+      subcategory: 'country',
+      type: {
+        description: 'asd',
+        name: 'event'
+      }
     });
   }
 
   public mapReady(map) {
     this.mapInstance = map;
+    this.eventService.getAllEvents().then((events) => {
+      for (let i=0; i<Object.keys(events.data).length; i++) {
+        const event = events.data[Object.keys(events.data)[i]];
+        this.markers.push({
+          lat: event.coordinates.lat,
+          lng: event.coordinates.lng,
+          alpha: 1
+        });
+      }
+    });
   }
 
   public selectMarker(marker) {
