@@ -1,3 +1,12 @@
-<div class="map-wrapper">
-  <div id="map" appInitMap></div>
-</div>
+<agm-map [latitude]="lat" [longitude]="lng">
+      <agm-marker
+        *ngFor="let marker of markers"
+        [latitude]="marker.lat"
+        [longitude]="marker.lng"
+        [opacity]="marker.alpha"
+        [markerDraggable]="true"
+        (markerClick)="selectMarker($event)"
+        [iconUrl]="marker.icon"
+      >
+      </agm-marker>
+</agm-map>
