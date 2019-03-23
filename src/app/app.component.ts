@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from './shared/services/event.service';
+import storageService from './shared/services/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,9 @@ import { EventService } from './shared/services/event.service';
 export class AppComponent implements OnInit {
   constructor(public eventService: EventService) {}
   public ngOnInit() {
-    // this.addEvent();
+    this.eventService.listenAllEvents().subscribe((data) => {
+      storageService.events.next(data);
+    });
   }
 
   public async addEvent(): Promise<void> {

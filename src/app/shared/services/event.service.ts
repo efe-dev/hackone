@@ -1,15 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DatabaseService } from './database.service';
-import { IEvent, DatabaseResponse } from '../../models/';
+import { IEvent, DatabaseResponse, NewEvent, EventResponse } from '../../models/';
 import { Observable } from 'rxjs';
-
-interface NewEvent {
-  eventId: string;
-}
-
-interface EventResponse {
-  [eventId: string]: IEvent;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -46,12 +38,12 @@ export class EventService {
   public listenAllEvents(): Observable<DatabaseResponse<EventResponse[]>> {
     return new Observable(observer => {
       try {
-        const events: EventResponse[] = [];
         this.db
           .instance()
           .ref('events')
           .on('value', snapshot => {
             if (snapshot.val()) {
+              const events: EventResponse[] = [];
               const availableEvents = snapshot.val();
               Object.keys(availableEvents).map((key: string) => {
                 events.push({ [key]: availableEvents[key] });
@@ -64,7 +56,7 @@ export class EventService {
             } else {
               // little hack
               observer.next({
-                data: events,
+                data: [],
                 message: '',
                 error: null
               });

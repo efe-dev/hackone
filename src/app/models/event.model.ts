@@ -9,3 +9,11 @@ export interface IEvent extends IMarker {
   category: string; // comma seperated
   status: IEventStatus;
 }
+
+export interface NewEvent {
+  eventId: string;
+}
+
+export interface EventResponse {
+  [eventId: string]: IEvent;
+}

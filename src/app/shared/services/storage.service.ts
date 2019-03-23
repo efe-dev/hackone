@@ -1,18 +1,16 @@
 import { BehaviorSubject } from 'rxjs';
-import { EventService } from './event.service';
+import { DatabaseResponse, EventResponse } from 'src/app/models';
 
-export class StorageService {
+class StorageService {
+  public static instance = new StorageService();
 
-  private dataSource = new BehaviorSubject({});
-  data = this.dataSource.asObservable();
+  public events = new BehaviorSubject<DatabaseResponse<EventResponse[]>>(null);
 
-  constructor(public eventService: EventService) {
-    this.eventService.listenAllEvents().subscribe((data) => {
-      this.updateData(data);
-    });
-  }
-
-  public updateData(data) {
-    this.dataSource.next(data);
+  constructor() {
+    if (StorageService.instance) {
+      throw new Error('Cannot duplicate service.');
+    }
   }
 }
+
+export default StorageService.instance;

@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { mapConfig } from './mapConfig';
 import {} from 'googlemaps';
 import { EventService } from 'src/app/shared/services/event.service';
+import storageService from '../../shared/services/storage.service';
 
 @Component({
   selector: 'app-map',
@@ -28,14 +29,17 @@ export class MapComponent implements OnInit {
 
   public mapReady(map) {
     this.mapInstance = map;
-    this.eventService.getAllEvents().then((events) => {
-      for (let i = 0; i < events.data.length; i++) {
-        const event: any = events.data[i];
-        const eventData = event[Object.keys(event)[0]];
-        const id = Object.keys(event)[0];
-        eventData.lat = eventData.coordinates.lat;
-        eventData.lng = eventData.coordinates.lng;
-        this.markers.push(eventData);
+    storageService.events.subscribe((events) => {
+      // tslint:disable-next-line:prefer-for-of
+      if (events) {
+        for (let i = 0; i < events.data.length; i++) {
+          const event: any = events.data[i];
+          const eventData = event[Object.keys(event)[0]];
+          const id = Object.keys(event)[0];
+          eventData.lat = eventData.coordinates.lat;
+          eventData.lng = eventData.coordinates.lng;
+          this.markers.push(eventData);
+        }
       }
     });
   }
