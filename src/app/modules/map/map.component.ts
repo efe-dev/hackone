@@ -1,6 +1,7 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ControlPosition, MapTypeId } from '@agm/core/services/google-maps-types';
+/// <reference types="@types/googlemaps" />
+import { Component, OnInit } from '@angular/core';
 import { mapConfig } from './mapConfig';
+import {} from 'googlemaps';
 
 @Component({
   selector: 'app-map',
@@ -22,5 +23,10 @@ export class MapComponent implements OnInit {
       lng: coords.lng,
       alpha: 1
     });
+  }
+
+  public changeView(map) {
+    const trafficLayer = new google.maps.TrafficLayer();
+    trafficLayer.setMap(map);
   }
 }

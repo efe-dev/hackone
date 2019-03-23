@@ -4,6 +4,7 @@
   [mapTypeId]="map.mapType"
   [zoom]="map.zoom"
   (mapClick)="mapClicked($event)"
+  (mapReady)="changeView($event)"
   >
       <agm-marker
         *ngFor="let marker of markers"
