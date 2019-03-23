@@ -1,10 +1,15 @@
-<agm-map [latitude]="lat" [longitude]="lng">
+<agm-map
+  [latitude]="map.lat"
+  [longitude]="map.lng"
+  [mapTypeId]="map.mapType"
+  [zoom]="map.zoom"
+  (mapClick)="mapClicked($event)"
+  >
       <agm-marker
         *ngFor="let marker of markers"
         [latitude]="marker.lat"
         [longitude]="marker.lng"
         [opacity]="marker.alpha"
-        [markerDraggable]="true"
         (markerClick)="selectMarker($event)"
         [iconUrl]="marker.icon"
       >
