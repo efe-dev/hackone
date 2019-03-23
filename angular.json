@@ -7,7 +7,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
+      "prefix": "sirius",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
@@ -137,5 +137,19 @@
       }
     }
   },
-  "defaultProject": "hackone"
+  "defaultProject": "hackone",
+  "schematics": {
+    "@schematics/angular:component": {
+      "spec": false
+    },
+    "@schematics/angular:directive": {
+      "spec": false
+    },
+    "@schematics/angular:service": {
+      "spec": false
+    },
+    "@schematics/angular:pipe": {
+      "spec": false
+    }
+  }
 }
