@@ -85,10 +85,15 @@ export class MapComponent implements OnInit {
     });
     this.eventService.onEventUpdate().subscribe((events: any) => {
       if (events) {
-        const id = events.data.eventId;
+        const event = events.data;
         for (let i = 0; i < this.markers.length; i++) {
-          if (this.markers[i].id === id) {
-            console.log(i);
+          if (this.markers[i].id === Object.keys(event)[0]) {
+            const eventData = event[Object.keys(event)[0]];
+            const id = Object.keys(event)[0];
+            eventData.id = id;
+            eventData.lat = eventData.coordinates.lat;
+            eventData.lng = eventData.coordinates.lng;
+            this.markers[i] = event;
           }
         }
       }
@@ -119,23 +124,5 @@ export class MapComponent implements OnInit {
   public setToTrafficLayer() {
     const trafficLayer = new google.maps.TrafficLayer();
     trafficLayer.setMap(this.mapInstance);
-  }
-
-  public showContextMenu($event, template: TemplateRef<void>): void {
-    this.dropdownService.dispose();
-    setTimeout(() => {
-      console.log(this.currentMouseEvent, template);
-      this.contextMenu = this.dropdownService.create(this.currentMouseEvent, template);
-    }, 200);
-  }
-
-  public closeContextMenu(event: NzMenuDirective): void {
-    console.log(event);
-    console.log('context menu event', event);
-  }
-
-  @HostListener('click', ['$event'])
-  public onMouseClick(event: MouseEvent): void {
-    this.currentMouseEvent = event;
   }
 }

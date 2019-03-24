@@ -1,11 +1,3 @@
-<ng-template #contextMenuTemplate>
-  <ul nz-menu nzInDropDown (nzClick)="closeContextMenu($event)" class="context-menu">
-    <li nz-menu-item>1st menu item</li>
-    <li nz-menu-item>2nd menu item</li>
-    <li nz-menu-item nzDisabled>disabled menu item</li>
-  </ul>
-</ng-template>
-
 <agm-map
   [latitude]="map.lat"
   [longitude]="map.lng"
@@ -20,7 +12,7 @@
     [longitude]="marker.lng"
     [opacity]="marker.alpha"
     [iconUrl]="marker.icon"
-    (markerClick)="showContextMenu($event, contextMenuTemplate)"
+    (markerClick)="selectMarker(marker)"
   >
   </agm-marker>
 </agm-map>
