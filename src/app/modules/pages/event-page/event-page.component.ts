@@ -19,6 +19,7 @@ export class EventPageComponent implements OnInit {
   categories: ICategory[];
   listOfOption: Array<{ label: string; value: string }> = [];
   listOfSelectedValue = ['a10', 'c12'];
+  firstTimeFetch = true;
 
   events: any;
 
@@ -28,35 +29,35 @@ export class EventPageComponent implements OnInit {
   ) {
     this.categories = [
       {
-        name: 'music',
-        color: AppColors.purple,
-        selected: true
+        name: 'culture',
+        color: AppColors.cyan,
+        selected: true,
       },
       {
-        name: 'sport',
+        name: 'sports',
         color: AppColors.lime,
         selected: true
       },
       {
-        name: 'culture',
+        name: 'music',
         color: AppColors.red,
         selected: true
       },
       {
-        name: 'shows',
-        color: AppColors.magenta,
-        selected: true
+        name: 'workshop',
+        color: AppColors.purple,
+        selected: true,
       },
       {
-        name: 'workshops',
-        color: AppColors.yellow,
-        selected: true
-      }
+        name: 'city',
+        color: AppColors.gold,
+        selected: true,
+      },
     ];
 
     const children: Array<{ label: string; value: string }> = [];
-    for (let i = 10; i < 36; i++) {
-      children.push({ label: i.toString(36) + i, value: i.toString(36) + i });
+    for (const category of this.categories) {
+      children.push({ label: category.name, value: category.name });
     }
     this.listOfOption = children;
 
@@ -71,14 +72,17 @@ export class EventPageComponent implements OnInit {
         event["id"] = key;
         this.events.push(event);
       }
+      this.firstTimeFetch = false;
     });
     this.eventService.listenAllEvents().subscribe(({ data }) => {
-      if (data && data.length) {
-        const event = data;
-        const key = Object.keys(event[0])[0];
-        const e = event[0][key] as any;
-        e.id = key;
-        this.events.push(e);
+      if (!this.firstTimeFetch) {
+        if (data && data.length) {
+          const event = data;
+          const key = Object.keys(event[0])[0];
+          const e = event[0][key] as any;
+          e.id = key;
+          this.events.push(e);
+        }
       }
     });
     this.eventService.onEventDelete().subscribe(({ data: { eventId } }) => {
@@ -97,5 +101,15 @@ export class EventPageComponent implements OnInit {
 
   showOnMap(item) {
     this.messengerService.sendMessage(item);
+  }
+
+  trimText(text: string, limit: number) {
+    return (text.length <= limit)
+            ? text
+            : text.slice(0, limit) + '...';
+  }
+
+  getColorName(hex: string) {
+    return AppColorsInvert[hex];
   }
 }
