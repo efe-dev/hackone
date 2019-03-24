@@ -5,6 +5,7 @@
   [zoom]="map.zoom"
   (mapClick)="mapClicked($event)"
   (mapReady)="mapReady($event)"
+  (zoomChange)="closeInfoWindow()"
 >
   <agm-marker
     *ngFor="let marker of markers"
@@ -12,8 +13,11 @@
     [longitude]="marker.lng"
     [opacity]="marker.alpha"
     [iconUrl]="marker.icon"
-    (markerClick)="selectMarker(marker)"
+    (markerClick)="showInfoPopover(markerInfoWindow, marker)"
   >
+    <agm-info-window #markerInfoWindow [disableAutoPan]="true">
+      <h3>{{ marker.name }}</h3>
+    </agm-info-window>
   </agm-marker>
 </agm-map>
 

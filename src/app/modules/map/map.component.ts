@@ -1,5 +1,5 @@
 /// <reference types="@types/googlemaps" />
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { mapConfig } from './mapConfig';
 import {} from 'googlemaps';
 import { EventService } from 'src/app/shared/services/event.service';
@@ -10,6 +10,7 @@ import { EventService } from 'src/app/shared/services/event.service';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
+  private infoWindow;
 
   public map = mapConfig;
   public markers = [];
@@ -116,5 +117,19 @@ export class MapComponent implements OnInit {
   public setToTrafficLayer() {
     const trafficLayer = new google.maps.TrafficLayer();
     trafficLayer.setMap(this.mapInstance);
+  }
+
+
+  public showInfoPopover(info, marker) {
+    this.closeInfoWindow();
+    console.log(info, marker);
+    this.infoWindow = info;
+    info.open();
+  }
+
+  public closeInfoWindow() {
+    if (this.infoWindow) {
+      this.infoWindow.close();
+    }
   }
 }
