@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AppColors} from '../../../models/colors.model';
+import {AppColors, AppColorsInvert} from '../../../models/colors.model';
 import {EventService} from '../../../shared/services/event.service';
 import {IEvent} from '../../../models';
 
@@ -26,35 +26,35 @@ export class EventPageComponent implements OnInit {
   ) {
     this.categories = [
       {
-        name: 'music',
-        color: AppColors.purple,
+        name: 'culture',
+        color: AppColors.cyan,
         selected: true,
       },
       {
-        name: 'sport',
+        name: 'sports',
         color: AppColors.lime,
         selected: true,
       },
       {
-        name: 'culture',
+        name: 'music',
         color: AppColors.red,
         selected: true,
       },
       {
-        name: 'shows',
-        color: AppColors.magenta,
+        name: 'workshop',
+        color: AppColors.purple,
         selected: true,
       },
       {
-        name: 'workshops',
-        color: AppColors.yellow,
+        name: 'city',
+        color: AppColors.gold,
         selected: true,
       },
     ];
 
     const children: Array<{ label: string; value: string }> = [];
-    for (let i = 10; i < 36; i++) {
-      children.push({ label: i.toString(36) + i, value: i.toString(36) + i });
+    for (const category of this.categories) {
+      children.push({ label: category.name, value: category.name });
     }
     this.listOfOption = children;
 
@@ -86,4 +86,14 @@ export class EventPageComponent implements OnInit {
   //   a
   }
 
+  trimText(text: string, limit: number) {
+    return (text.length <= limit)
+            ? text
+            : text.slice(0, limit) + '...';
+  }
+
+  getColorName(hex: string) {
+    console.warn(hex, AppColorsInvert[hex]);
+    return AppColorsInvert[hex];
+  }
 }

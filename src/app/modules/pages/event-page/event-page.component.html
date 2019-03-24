@@ -9,13 +9,13 @@
 
     <div class="event-card-mini" *ngFor="let event of events;">
       <div class="event-image">
-        <img src="https://picsum.photos/72?random" alt="event-name" />
+        <img src="https://picsum.photos/72?random#kot" alt="event-name" />
       </div>
 
       <div class="event-details">
 
-        <p class="event-title">
-          {{event.name}}
+        <p class="event-title" [title]="event.name">
+          {{ trimText(event.name, 20) }}
         </p>
 
         <p class="event-date">
@@ -44,8 +44,10 @@
     *ngFor="let category of categories"
     nzMode="checkable"
     [nzChecked]="category.selected"
+    [ngClass]="'background-'+getColorName(category.color)"
+    [title]="category.name"
     (nzCheckedChange)="toggleCategory($event, category)">
-    {{ category.name }}
+    {{category.name}}
   </nz-tag>
   <a href="/">more...</a>
 </div>
