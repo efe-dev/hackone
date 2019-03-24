@@ -279,8 +279,9 @@ export class MapComponent implements OnInit {
 
   public showInfoPopover(info, marker) {
     this.closeInfoWindow();
-    console.log(info, marker);
     this.infoWindow = info;
+    this.map.lat = marker.lat + 0.01;
+    this.map.lng = marker.lng;
     info.open();
   }
 
