@@ -42,7 +42,7 @@ export class MapComponent implements OnInit {
       },
       date: '',
       description: 'This amazing event is nothing you have ever seen!',
-      image: 'maybe.later',
+      image: 'https://picsum.photos/200/80',
       name: 'The Art of Hacking',
       status: 'Active',
       type: {
@@ -62,7 +62,7 @@ export class MapComponent implements OnInit {
       },
       date: '',
       description: 'Pełen emocji mecz transmitowany na żywo!',
-      image: 'imageUrl',
+      image: 'https://picsum.photos/200/80',
       name: 'Lokalna transmisja piłki nożnej!',
       status: 'Active',
       type: {
@@ -83,7 +83,7 @@ export class MapComponent implements OnInit {
       date: '',
       description:
         'Come and be amazed by the fact that I\'m still able to write those descriptions at 4AM',
-      image: 'imageUrl',
+      image: 'https://picsum.photos/200/80',
       name: 'Ed, she run!',
       status: 'Active',
       type: {
@@ -103,7 +103,7 @@ export class MapComponent implements OnInit {
       },
       date: '',
       description: 'Can you cook? I certainly can\'t, please send help!',
-      image: 'imageUrl',
+      image: 'https://picsum.photos/200/80',
       name: 'You can cook!',
       status: 'Active',
       type: {
@@ -124,7 +124,7 @@ export class MapComponent implements OnInit {
       date: '',
       description:
         'Everybody can play! We reserve the right to judge you tho...',
-      image: 'imageUrl',
+      image: 'https://picsum.photos/200/80',
       name: 'Open piano at main plaza!',
       status: 'Active',
       type: {
@@ -145,7 +145,7 @@ export class MapComponent implements OnInit {
       date: '',
       description:
         'Feeling lost? You don\'t know what going on? That\'s fine, because neither do we!',
-      image: 'imageUrl',
+      image: 'https://picsum.photos/200/80',
       name: 'Get yourself sorted out!',
       status: 'Active',
       type: {
@@ -166,7 +166,7 @@ export class MapComponent implements OnInit {
       date: '',
       description:
         'You have this great ideas that will make out great town even greater? That\'s great! Come and tell us.',
-      image: 'imageUrl',
+      image: 'https://picsum.photos/200/80',
       name: 'Fix your city!',
       status: 'Active',
       type: {

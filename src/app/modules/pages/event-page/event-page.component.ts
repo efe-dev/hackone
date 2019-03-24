@@ -19,6 +19,7 @@ export class EventPageComponent implements OnInit {
   categories: ICategory[];
   listOfOption: Array<{ label: string; value: string }> = [];
   listOfSelectedValue = ['a10', 'c12'];
+  firstTimeFetch = true;
 
   events: any;
 
@@ -71,14 +72,17 @@ export class EventPageComponent implements OnInit {
         event["id"] = key;
         this.events.push(event);
       }
+      this.firstTimeFetch = false;
     });
     this.eventService.listenAllEvents().subscribe(({ data }) => {
-      if (data && data.length) {
-        const event = data;
-        const key = Object.keys(event[0])[0];
-        const e = event[0][key] as any;
-        e.id = key;
-        this.events.push(e);
+      if (!this.firstTimeFetch) {
+        if (data && data.length) {
+          const event = data;
+          const key = Object.keys(event[0])[0];
+          const e = event[0][key] as any;
+          e.id = key;
+          this.events.push(e);
+        }
       }
     });
     this.eventService.onEventDelete().subscribe(({ data: { eventId } }) => {
