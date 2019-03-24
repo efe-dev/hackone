@@ -7,34 +7,43 @@
     <h2>Starting soon...</h2>
     <a href="/events#all-events" class="all-events-link">View All</a>
 
-    <div class="event-card-mini" *ngFor="let event of events;">
+    <div
+      class="event-card-mini"
+      *ngFor="let event of events"
+      [ngClass]="'event-card-mini-' + getColorName(event.category.color)"
+    >
       <div class="event-image">
-        <img [src]="'https://picsum.photos/72?random#'+event.name" alt="event-name" />
+        <img
+          [src]="'https://picsum.photos/72?random#' + event.name"
+          alt="event-name"
+        />
       </div>
 
       <div class="event-details">
-
         <p class="event-title" [title]="event.name">
           {{ trimText(event.name, 20) }}
         </p>
 
         <p class="event-date">
           <i nz-icon type="clock-circle" theme="outline"></i>
-          {{event.date | date}}
+          {{ event.date | date }}
         </p>
 
         <p class="event-address">
           <i nz-icon type="environment" theme="outline"></i>
-          {{event.address}}
+          {{ event.address }}
         </p>
-
       </div>
 
-      <div class="event-action" nz-tooltip nzTitle="Show on map" (click)="showOnMap(event)">
+      <div
+        class="event-action"
+        nz-tooltip
+        nzTitle="Show on map"
+        (click)="showOnMap(event)"
+      >
         <i nz-icon type="environment" theme="outline"></i>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -44,10 +53,11 @@
     *ngFor="let category of categories"
     nzMode="checkable"
     [nzChecked]="category.selected"
-    [ngClass]="'background-'+getColorName(category.color)"
+    [ngClass]="'background-' + getColorName(category.color)"
     [title]="category.name"
-    (nzCheckedChange)="toggleCategory($event, category)">
-    {{category.name}}
+    (nzCheckedChange)="toggleCategory($event, category)"
+  >
+    {{ category.name }}
   </nz-tag>
   <a href="/">more...</a>
 </div>
@@ -62,12 +72,22 @@
       style="flex: 2;"
       nzMode="multiple"
       nzPlaceHolder="Please select"
-      [(ngModel)]="listOfSelectedValue">
-      <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+      [(ngModel)]="listOfSelectedValue"
+    >
+      <nz-option
+        *ngFor="let option of listOfOption"
+        [nzLabel]="option.label"
+        [nzValue]="option.value"
+      ></nz-option>
     </nz-select>
-    <ng-template #tagPlaceHolder let-selectedList> and {{ selectedList.length }} more selected </ng-template>
+    <ng-template #tagPlaceHolder let-selectedList>
+      and {{ selectedList.length }} more selected
+    </ng-template>
 
-    <nz-input-group [nzSuffix]="suffixIconSearch" style="margin: 0 10px; flex: 1;">
+    <nz-input-group
+      [nzSuffix]="suffixIconSearch"
+      style="margin: 0 10px; flex: 1;"
+    >
       <input type="text" nz-input placeholder="input search text" />
     </nz-input-group>
     <ng-template #suffixIconSearch>
@@ -76,34 +96,40 @@
 
     <label nz-checkbox [(ngModel)]="checked">Show archived</label>
 
-    <nz-range-picker [(ngModel)]="dateRange" (ngModelChange)="onChange($event)" nzShowTime
-                      style="margin: 0 10px;"></nz-range-picker>
+    <nz-range-picker
+      [(ngModel)]="dateRange"
+      (ngModelChange)="onChange($event)"
+      nzShowTime
+      style="margin: 0 10px;"
+    ></nz-range-picker>
 
     <button nz-button [nzType]="'primary'">
       Update map
     </button>
-
   </div>
 
   <div class="event-feed">
-
-    <div *ngFor="let event of events;" class="event-card" [ngClass]="'event-card-'+getColorName(event.category.color)" >
+    <div
+      *ngFor="let event of events"
+      class="event-card"
+      [ngClass]="'event-card-' + getColorName(event.category.color)"
+    >
       <div class="thumbnail">
-        <img [src]="'https://picsum.photos/115?random#'+event.name" />
+        <img [src]="'https://picsum.photos/115?random#' + event.name" />
       </div>
-      <p class="title">{{event.name}}</p>
+      <p class="title">{{ event.name }}</p>
       <p class="description">
-        {{event.description}}
+        {{ event.description }}
       </p>
       <div class="footer">
         <div class="event-details">
           <p>
             <i nz-icon type="clock-circle" theme="outline"></i>
-            {{event.date | date}}
+            {{ event.date | date }}
           </p>
           <p>
             <i nz-icon type="environment" theme="outline"></i>
-            {{event.address}}
+            {{ event.address }}
           </p>
           <p>
             <i nz-icon type="dollar" theme="outline"></i>
@@ -118,15 +144,18 @@
             </button>
           </p>
           <p>
-            <button nz-button nzType="primary" nzBlock (click)="showOnMap(event.id)">
+            <button
+              nz-button
+              nzType="primary"
+              nzBlock
+              (click)="showOnMap(event.id)"
+            >
               <i nz-icon type="environment" theme="outline"></i>
               Show on map
             </button>
           </p>
         </div>
       </div>
-
-      </div>
     </div>
-
+  </div>
 </div>

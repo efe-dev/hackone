@@ -238,3 +238,74 @@
     border-color: #ec008c;
   }
 }
+
+/* MINI CARDS */
+.event-card-mini-purple {
+  box-shadow: 0px 0px 5px 3px rgba(245, 52, 139, 0.2);
+  .event-action {
+    color: #a3238e;
+    &:hover {
+      background: #a3238e;
+    }
+  }
+}
+
+.event-card-mini-red {
+  box-shadow: 0px 0px 5px 3px rgba(245, 48, 40, 0.2);
+  .event-action {
+    color: #ed1c24;
+    &:hover {
+      background: #ed1c24;
+    }
+  }
+}
+
+.event-card-mini-yellow {
+  box-shadow: 0px 0px 5px 3px rgba(242, 245, 44, 0.2);
+  .event-action {
+    color: #ffcb05;
+    &:hover {
+      background: #ffcb05;
+    }
+  }
+}
+
+.event-card-mini-cyan {
+  box-shadow: 0px 0px 5px 3px rgba(45, 245, 234, 0.2);
+  .event-action {
+    color: #61cbe6;
+    &:hover {
+      background: #61cbe6;
+    }
+  }
+}
+
+.event-card-mini-magenta {
+  box-shadow: 0px 0px 5px 3px rgba(245, 77, 214, 0.2);
+  .event-action {
+    color: #ec008c;
+    &:hover {
+      background: #ec008c;
+    }
+  }
+}
+
+.event-card-mini-lime {
+  box-shadow: 0px 0px 5px 3px rgba(128, 245, 62, 0.2);
+  .event-action {
+    color: #a6ce39;
+    &:hover {
+      background: #a6ce39;
+    }
+  }
+}
+
+.event-card-mini-gold {
+  box-shadow: 0px 0px 5px 3px rgba(245, 195, 63, 0.2);
+  .event-action {
+    color: #d2ab67;
+    &:hover {
+      background: #d2ab67;
+    }
+  }
+}
