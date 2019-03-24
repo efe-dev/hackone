@@ -291,10 +291,12 @@ export class MapComponent implements OnInit {
     }
   }
 
-  public showAdminInfoWindow(info) {
+  public showAdminInfoWindow(info, marker) {
     this.closeInfoWindow();
     this.adminActions = true;
     this.infoWindow = info;
+    this.map.lat = marker.coordinates.lat + 0.01;
+    this.map.lng = marker.coordinates.lng;
     info.open();
   }
 
