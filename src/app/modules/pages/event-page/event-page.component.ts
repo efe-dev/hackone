@@ -93,7 +93,6 @@ export class EventPageComponent implements OnInit {
   }
 
   getColorName(hex: string) {
-    console.warn(hex, AppColorsInvert[hex]);
     return AppColorsInvert[hex];
   }
 }

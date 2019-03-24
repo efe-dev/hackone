@@ -137,7 +137,7 @@
 
 .event-feed {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
 }
 
@@ -166,4 +166,75 @@
 }
 .background-gold {
   background: #d2ab67 !important;
+}
+
+/* CARDS  */
+.event-card-purple {
+  border-top: 5px solid #7a2f6e;
+  box-shadow: -2px -2px 8px 0 rgba(245, 61, 150, 0.3);
+
+  button {
+    background: #7a2f6e;
+    border-color: #7a2f6e;
+  }
+}
+
+.event-card-red {
+  border-top: 5px solid #ed1c24;
+  box-shadow: -2px -2px 8px 0 rgba(245, 34, 45, 0.3);
+
+  button {
+    background: #ed1c24;
+    border-color: #ed1c24;
+  }
+}
+
+.event-card-yellow {
+  border-top: 5px solid #ffcb05;
+  box-shadow: -2px -2px 8px 0 rgba(245, 225, 44, 0.3);
+
+  button {
+    background: #ffcb05;
+    border-color: #ffcb05;
+  }
+}
+
+.event-card-cyan {
+  border-top: 5px solid #61cbe6;
+  box-shadow: -2px -2px 8px 0 rgba(42, 245, 234, 0.3);
+
+  button {
+    background: #61cbe6;
+    border-color: #61cbe6;
+  }
+}
+
+.event-card-lime {
+  border-top: 5px solid #a6ce39;
+  box-shadow: -2px -2px 8px 0 rgba(146, 245, 67, 0.3);
+
+  button {
+    background: #a6ce39;
+    border-color: #a6ce39;
+  }
+}
+
+.event-card-gold {
+  border-top: 5px solid #d2ab67;
+  box-shadow: -2px -2px 8px 0 rgba(245, 204, 67, 0.3);
+
+  button {
+    background: #d2ab67;
+    border-color: #d2ab67;
+  }
+}
+
+.event-card-magenta {
+  border-top: 5px solid #ec008c;
+  box-shadow: -2px -2px 8px 0 rgba(245, 85, 174, 0.3);
+
+  button {
+    background: #ec008c;
+    border-color: #ec008c;
+  }
 }
