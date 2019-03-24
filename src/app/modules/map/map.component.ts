@@ -97,6 +97,9 @@ export class MapComponent implements OnInit {
         }
       }
     });
+    setInterval(() => {
+      this.markers = this.markers;
+    });
   }
 
   public selectMarker(marker) {
