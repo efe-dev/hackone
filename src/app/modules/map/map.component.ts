@@ -4,7 +4,7 @@ import { mapConfig } from './mapConfig';
 import {} from 'googlemaps';
 import { EventService } from 'src/app/shared/services/event.service';
 import CustomMapStyles from './map.styles';
-import {AppColors} from '../../models/colors.model';
+import { AppColors } from '../../models/colors.model';
 import { MessageService } from '../../shared/services/messenger.service';
 
 @Component({
@@ -22,6 +22,7 @@ export class MapComponent implements OnInit {
     'workshop'
   ];
   private infoWindow;
+  private adminActions = false;
 
   public map = mapConfig;
   public markers = [];
@@ -176,8 +177,13 @@ export class MapComponent implements OnInit {
   ];
   public index = 0;
 
-  constructor(public eventService: EventService, private messengerService: MessageService) {
-    this.messengerService.getMessage().subscribe(message => { this.showOnMap(message.text); });
+  constructor(
+    public eventService: EventService,
+    private messengerService: MessageService
+  ) {
+    this.messengerService.getMessage().subscribe(message => {
+      this.showOnMap(message.text);
+    });
   }
 
   ngOnInit() {}
@@ -192,7 +198,8 @@ export class MapComponent implements OnInit {
   public mapClicked(map) {
     const coords = map.coords;
 
-    const event = this.sampleEvents[this.index++];
+    const event = this.sampleEvents[this.index % 7];
+    this.index++;
     event.coordinates = {
       lat: coords.lat,
       lng: coords.lng
@@ -288,7 +295,21 @@ export class MapComponent implements OnInit {
   public closeInfoWindow() {
     if (this.infoWindow) {
       this.infoWindow.close();
+      this.infoWindow = null;
+      this.adminActions = false;
     }
+  }
+
+  public showAdminInfoWindow(info) {
+    this.closeInfoWindow();
+    this.adminActions = true;
+    this.infoWindow = info;
+    info.open();
+  }
+
+  public deleteEvent(eventId: string): void {
+    this.closeInfoWindow();
+    this.eventService.deleteEvent(eventId);
   }
 
   public showOnMap(item) {

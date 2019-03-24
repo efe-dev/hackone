@@ -15,6 +15,7 @@
     [opacity]="marker.alpha"
     [iconUrl]="{ url: 'assets/icons/' + getMarkerImageUrl(marker.category.name) + '.svg', scaledSize: { width: 30, height: 30 } }"
     (markerClick)="showInfoPopover(markerInfoWindow, marker)"
+    (markerRightClick)="showAdminInfoWindow(markerInfoWindow, marker.id)"
   >
     <agm-info-window #markerInfoWindow [disableAutoPan]="true">
       <div class="info-window-wrapper">
@@ -29,6 +30,7 @@
           Warszawska, 10/7
         </p>
         <button nz-button nzType="dashed" nzSize="small">Więcej</button>
+        <button *ngIf="adminActions" nz-button nzType="danger" nzSize="small" (click)="deleteEvent(marker.id)">Remove</button>
       </div>
     </agm-info-window>
   </agm-marker>
