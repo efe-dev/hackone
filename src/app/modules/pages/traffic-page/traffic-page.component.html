@@ -7,7 +7,15 @@
   (mapReady)="mapReady($event)"
 >
 </agm-map>
+<br><br>
+<button (click)="showTraffic()" nz-button nzType="primary" style="color: white; margin-right: 15px;">Pokaż natężenie ruchu drogowego</button>
+<button (click)="showBicycle()" nz-button nzType="primary">Pokaż ścieżki rowerowe</button>
 
-
-<button (click)="showTraffic()">Pokaż natężenie ruchu drogowego</button>
-<button (click)="showBicycle()">Pokaż ścieżki rowerowe</button>
+<br><br>
+<h1>System komunikacji o ruchu</h1>
+<ul>
+  <li>Mozliwość wyświetlania planowanych i trwających prac drogowych</li>
+  <li>Zgłaszanie wypadków i szkód</li>
+  <li>Propozycje rozbudowy ścieżek rowerowych</li>
+  <li>Wyświetlanie planowanych ścieżek rowerowych</li>
+</ul>
