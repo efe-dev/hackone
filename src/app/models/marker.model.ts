@@ -4,7 +4,7 @@
 
 
 export interface IMarkerType {
-  name: 'event' | 'project' | 'idea';
+  name: 'event' | 'project' | 'idea' | any;
   description: string;
 }
 
