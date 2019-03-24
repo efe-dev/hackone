@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppColors } from '../../../models/colors.model';
 import { EventService } from '../../../shared/services/event.service';
-import { IEvent } from '../../../models';
+import { IEvent, AppColorsInvert } from '../../../models';
 import { MessageService } from 'src/app/shared/services/messenger.service';
 
 interface ICategory {
