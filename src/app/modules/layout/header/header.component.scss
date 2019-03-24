@@ -6,6 +6,7 @@
   background-size: 150px;
   padding: 10px;
   margin: 5px 20px 0 20px;
+  cursor: pointer;
 }
 .ant-menu {
 
@@ -23,6 +24,7 @@
 .user-menu {
   min-width: 180px;
   text-align: right;
+  border: none !important;
 
   @media screen and (max-width: 480px) {
     min-width: 130px;
@@ -55,10 +57,7 @@
 .background-purple {
   background: #8c347d !important;
   &:hover  {
-    border-top: 3px solid #752f6a !important;
-    border-bottom: 3px solid #752f6a !important;
     background: #9e3f8e !important;
-    line-height: 30px;
   }
   &.active  {
     border-top: 3px solid #752f6a !important;
@@ -71,10 +70,7 @@
 .background-red {
   background: #e61c26 !important;
   &:hover  {
-    border-top: 3px solid #b12727 !important;
-    border-bottom: 3px solid #b12727 !important;
     background: #fa0000 !important;
-    line-height: 30px;
   }
   &.active  {
     border-top: 3px solid #b12727 !important;
@@ -87,10 +83,7 @@
 .background-lime {
   background: #a6ce39 !important;
   &:hover  {
-    border-top: 3px solid #95b835 !important;
-    border-bottom: 3px solid #95b835 !important;
     background: #b8e03f !important;
-    line-height: 30px;
   }
   &.active  {
     border-top: 3px solid #95b835 !important;
@@ -109,4 +102,25 @@
     #fff
     no-repeat;
   background-size:100% 5px;
+}
+
+.ant-menu-item {
+  .title {
+    display: block;
+  }
+
+  .subtitle {
+    font-size: 0.9em;
+    display: none;
+  }
+
+  &:hover {
+    .title {
+      display: none;
+    }
+
+    .subtitle {
+      display: block;
+    }
+  }
 }

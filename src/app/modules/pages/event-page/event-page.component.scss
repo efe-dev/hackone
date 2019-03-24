@@ -1,17 +1,38 @@
+.recent-events {
+  width: 35%;
+  margin-left: 25px;
+  position: relative;
+
+  .all-events-link {
+    position: absolute;
+    right: 25px;
+    top: 4px;
+  }
+}
+
 .event-card-mini {
   height: 90px;
-  background: #b7c3e01a;
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border-radius: 10px;
   color: #163550;
-  border-left: 5px solid #f5222d;
-  border-top: 2px solid #f5222d;
+  border-radius: 8px;
+  box-shadow: -2px -2px 8px 0 rgba(245, 34, 45, 0.3);
+  background: #b7c3e01a;
+  background-color: rgba(183, 195, 224, 0.1);
+  background-color: var(--palegrey);
+
+  &:hover {
+    background: #b7c3e01a;
+    cursor: pointer;
+  }
 
   img {
     border-radius: 10px;
-    height: 100%;
+    height: 70px;
+    width: 70px;
+    color: #ccc;
+    background: #ccc;
   }
 
   .event-details {
@@ -36,13 +57,71 @@
   .event-action {
     width: 45px;
     height: 45px;
-    color: white;
     font-size: 2em;
-    background: #f5222d;
+    color: #f5222d;
+    background: transparent;
     border-radius: 50px;
     align-self: center;
     text-align: center;
     margin-right: 15px;
     cursor: pointer;
+
+    &:hover {
+      color: white;
+      background: #f5222d;
+    }
   }
 }
+
+.event-card {
+  width: 30%;
+  position: relative;
+  height: 360px;
+  margin-top: 30px;
+  padding: 25px;
+  box-shadow: -2px -2px 8px 0 rgba(245, 34, 45, 0.3);
+  background: #b7c3e01a;
+  background-color: rgba(183, 195, 224, 0.1);
+  background-color: rgba(183, 195, 224, 0.1);
+  background-color: var(--palegrey);
+  cursor: pointer;
+  border-top: 5px solid #e61c26;
+
+  .thumbnail {
+    position: absolute;
+    top: -20px;
+    left: 25px;
+  }
+
+  img {
+    border-radius: 25px;
+  }
+
+  .title {
+    padding-left: 140px;
+    font-size: 1.5em;
+  }
+
+  .description {
+    margin-top: 60px;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .event-details {
+    width: 45%;
+  }
+
+  .event-action {
+    width: 45%;
+  }
+}
+
+.event-feed-actions {
+  display: flex;
+  margin-bottom: 50px;
+}
+

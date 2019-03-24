@@ -3,8 +3,9 @@
     <h2>Best events, always fresh!</h2>
     <app-map></app-map>
   </div>
-  <div class="recent-events" style="width: 30%; margin-left: 25px;">
-    <h2>Starts soon</h2>
+  <div class="recent-events">
+    <h2>Starting soon...</h2>
+    <a href="/events#all-events" class="all-events-link">View All</a>
 
     <div class="event-card-mini">
       <div class="event-image">
@@ -14,7 +15,7 @@
       <div class="event-details">
 
         <p class="event-title">
-          Rohan's Exposition
+          Rohan's Exhibition
         </p>
 
         <p class="event-date">
@@ -29,7 +30,7 @@
 
       </div>
 
-      <div class="event-action">
+      <div class="event-action" nz-tooltip nzTitle="Show on map">
         <i nz-icon type="environment" theme="outline"></i>
       </div>
     </div>
@@ -50,7 +51,83 @@
 </div>
 
 <div>
-  <h1 style="margin-top: 30px;">Events in Katowice</h1>
+  <h1 style="margin-top: 30px;" id="all-events">Events in Katowice</h1>
+
+  <div class="event-feed-actions">
+    <nz-select
+      [nzMaxTagCount]="3"
+      [nzMaxTagPlaceholder]="tagPlaceHolder"
+      style="flex: 2;"
+      nzMode="multiple"
+      nzPlaceHolder="Please select"
+      [(ngModel)]="listOfSelectedValue">
+      <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+    </nz-select>
+    <ng-template #tagPlaceHolder let-selectedList> and {{ selectedList.length }} more selected </ng-template>
+
+    <nz-input-group [nzSuffix]="suffixIconSearch" style="margin: 0 10px; flex: 1;">
+      <input type="text" nz-input placeholder="input search text" />
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+      <i nz-icon type="search"></i>
+    </ng-template>
+
+    <label nz-checkbox [(ngModel)]="checked">Show archived</label>
+
+    <nz-range-picker [(ngModel)]="dateRange" (ngModelChange)="onChange($event)" nzShowTime
+                      style="margin: 0 10px;"></nz-range-picker>
+
+    <button nz-button [nzType]="'primary'">
+      Update map
+    </button>
+
+  </div>
+
+  <div class="event-feed">
+
+    <div class="event-card" >
+      <div class="thumbnail">
+        <img src="https://picsum.photos/115?random" />
+      </div>
+      <p class="title">Rohan's Exhibition</p>
+      <p class="description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+        nisi ut aliquip ex ea commodo consequat.
+      </p>
+      <div class="footer">
+        <div class="event-details">
+          <p>
+            <i nz-icon type="clock-circle" theme="outline"></i>
+            September 10, 2019
+          </p>
+          <p>
+            <i nz-icon type="environment" theme="outline"></i>
+            Warszawska, 10/7
+          </p>
+          <p>
+            <i nz-icon type="dollar" theme="outline"></i>
+            FREE
+          </p>
+        </div>
+        <div class="event-actions">
+          <p>
+            <button nz-button nzType="primary" nzBlock>
+              <i nz-icon type="heart" theme="outline"></i>
+              Interested
+            </button>
+          </p>
+          <p>
+            <button nz-button nzType="primary" nzBlock>
+              <i nz-icon type="environment" theme="outline"></i>
+              Show on map
+            </button>
+          </p>
+        </div>
+      </div>
+
+      </div>
+    </div>
+
 </div>
-
-

@@ -6,6 +6,7 @@ import { AtmospherePageComponent } from './atmosphere-page/atmosphere-page.compo
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {RouterModule} from '@angular/router';
 import {MapModule} from '../map/map.module';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [EventPageComponent, TrafficPageComponent, AtmospherePageComponent],
@@ -14,6 +15,7 @@ import {MapModule} from '../map/map.module';
     RouterModule,
     NgZorroAntdModule,
     MapModule,
+    FormsModule,
   ]
 })
 export class PagesModule { }

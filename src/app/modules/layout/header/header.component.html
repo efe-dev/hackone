@@ -1,5 +1,5 @@
-<nz-header style="height: 70px" class="gradient">
-  <div class="logo"></div>
+<nz-header style="height: 70px; margin-top: 10px;" class="gradient">
+  <div class="logo" routerLink="/events"></div>
   <ul nz-menu [nzMode]="'horizontal'" class="menu-container">
 
     <!--<li nz-menu-item class="only-mobile" (click)="toggleSidebar()">-->
@@ -7,15 +7,18 @@
     <!--</li>-->
 
     <li nz-menu-item routerLink="/events" routerLinkActive="active" class="hide-mobile top-menu-item background-purple">
-      LIVING CITY
+      <span class="title"><strong>LIVING</strong> CITY</span>
+      <span class="subtitle">Go where the action is!</span>
     </li>
 
     <li nz-menu-item routerLink="/traffic" routerLinkActive="active" class="hide-mobile top-menu-item background-red">
-      CITY IN MOTION
+      <span class="title"><strong>CHANGING</strong> CITY</span>
+      <span class="subtitle">Traffic, cycling, air quality.</span>
     </li>
 
     <li nz-menu-item routerLink="/atmosphere" routerLinkActive="active" class="hide-mobile top-menu-item background-lime">
-      FRESH AIR
+      <span class="title"><strong>YOUR</strong> CITY</span>
+      <span class="subtitle">See what can be done</span>
     </li>
 
     <!-- RIGHT MENU (reversed order!) -->
@@ -42,6 +45,10 @@
           <span title>Account</span>
           <ul>
             <li nz-menu-item routerLink="/account/details" routerLinkActive="active">
+              <i nz-icon type="sliders" theme="outline"></i>
+              ADMIN PANEL
+            </li>
+            <li nz-menu-item routerLink="/account/details" routerLinkActive="active">
               <i nz-icon type="solution" theme="outline"></i>
               Tagged events
             </li>
@@ -61,4 +68,3 @@
 
   </ul>
 </nz-header>
-<div class="header"></div>

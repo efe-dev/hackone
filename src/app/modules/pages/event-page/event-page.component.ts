@@ -14,6 +14,8 @@ interface ICategory {
 })
 export class EventPageComponent implements OnInit {
   categories: ICategory[];
+  listOfOption: Array<{ label: string; value: string }> = [];
+  listOfSelectedValue = ['a10', 'c12'];
 
   constructor() {
     this.categories = [
@@ -43,6 +45,12 @@ export class EventPageComponent implements OnInit {
         selected: true,
       },
     ];
+
+    const children: Array<{ label: string; value: string }> = [];
+    for (let i = 10; i < 36; i++) {
+      children.push({ label: i.toString(36) + i, value: i.toString(36) + i });
+    }
+    this.listOfOption = children;
   }
 
   ngOnInit() {
