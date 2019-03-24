@@ -1,3 +1,34 @@
 agm-map {
   height: 400px;
 }
+
+.info-window-wrapper {
+  padding-right: -12px;
+  .event-image {
+    max-width: 200px;
+    min-width: 200px;
+    min-height: 80px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  .event-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 15px;
+  }
+
+  .event-date {
+    margin-bottom: 3px;
+    font-size: 0.9em;
+  }
+
+  .event-address {
+    font-size: 0.9em;
+  }
+}
+
+.gm-style .gm-style-iw {
+  left: 25px !important;
+}

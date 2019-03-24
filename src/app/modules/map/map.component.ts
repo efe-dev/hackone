@@ -3,6 +3,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { mapConfig } from './mapConfig';
 import {} from 'googlemaps';
 import { EventService } from 'src/app/shared/services/event.service';
+import CustomMapStyles from './map.styles';
 
 @Component({
   selector: 'app-map',
@@ -10,6 +11,7 @@ import { EventService } from 'src/app/shared/services/event.service';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
+  public mapStyles = CustomMapStyles;
   private infoWindow;
 
   public map = mapConfig;
@@ -17,31 +19,29 @@ export class MapComponent implements OnInit {
   public mapInstance;
   public firstTime = true;
 
-  constructor(
-    public eventService: EventService,
-  ) {}
+  constructor(public eventService: EventService) {}
 
   ngOnInit() {}
 
   public mapClicked(map) {
     const coords = map.coords;
-    this.eventService.addEvent({
-      address: 'xx',
-      category: 'music,concert,rock',
-      coordinates: {
-        lat: coords.lat,
-        lng: coords.lng
-      },
-      date: new Date().toISOString(),
-      description: 'desc',
-      image: 'imageUrl',
-      name: 'Event name',
-      status: 'Active',
-      type: {
-        description: 'asd',
-        name: 'event'
-      }
-    });
+    // this.eventService.addEvent({
+    //   address: 'xx',
+    //   category: 'music,concert,rock',
+    //   coordinates: {
+    //     lat: coords.lat,
+    //     lng: coords.lng
+    //   },
+    //   date: new Date().toISOString(),
+    //   description: 'desc',
+    //   image: 'imageUrl',
+    //   name: 'Event name',
+    //   status: 'Active',
+    //   type: {
+    //     description: 'asd',
+    //     name: 'event'
+    //   }
+    // });
   }
 
   public mapReady(map) {
@@ -118,7 +118,6 @@ export class MapComponent implements OnInit {
     const trafficLayer = new google.maps.TrafficLayer();
     trafficLayer.setMap(this.mapInstance);
   }
-
 
   public showInfoPopover(info, marker) {
     this.closeInfoWindow();

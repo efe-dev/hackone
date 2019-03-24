@@ -5,7 +5,7 @@ import { MapDirective } from './map.directive';
 import { MapComponent } from './map.component';
 import { AgmCoreModule } from '@agm/core';
 import { environment } from '../../../environments/environment';
-
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 @NgModule({
   declarations: [MapDirective, MapComponent],
@@ -13,9 +13,10 @@ import { environment } from '../../../environments/environment';
     CommonModule,
     AgmCoreModule.forRoot({
       apiKey: environment.mapsApiKey
-    })],
+    }),
+    NgZorroAntdModule
+  ],
   providers: [MapService],
   exports: [MapDirective, MapComponent]
 })
-export class
- MapModule {}
+export class MapModule {}
