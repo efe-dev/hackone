@@ -1,3 +1,13 @@
-<p>
-  traffic-page works!
-</p>
+<agm-map
+  [styles]="mapStyles"
+  [latitude]="map.lat"
+  [longitude]="map.lng"
+  [mapTypeId]="map.mapType"
+  [zoom]="map.zoom"
+  (mapReady)="mapReady($event)"
+>
+</agm-map>
+
+
+<button (click)="showTraffic()">Pokaż natężenie ruchu drogowego</button>
+<button (click)="showBicycle()">Pokaż ścieżki rowerowe</button>

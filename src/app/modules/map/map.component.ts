@@ -275,15 +275,6 @@ export class MapComponent implements OnInit {
     this.eventService.deleteEvent(marker.id);
   }
 
-  public click() {
-    this.setToTrafficLayer();
-  }
-
-  public setToTrafficLayer() {
-    const trafficLayer = new google.maps.TrafficLayer();
-    trafficLayer.setMap(this.mapInstance);
-  }
-
   public showInfoPopover(info, marker) {
     this.closeInfoWindow();
     this.infoWindow = info;

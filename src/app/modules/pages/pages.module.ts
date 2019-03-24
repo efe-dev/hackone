@@ -7,6 +7,8 @@ import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {RouterModule} from '@angular/router';
 import {MapModule} from '../map/map.module';
 import {FormsModule} from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [EventPageComponent, TrafficPageComponent, AtmospherePageComponent],
@@ -16,6 +18,9 @@ import {FormsModule} from '@angular/forms';
     NgZorroAntdModule,
     MapModule,
     FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: environment.mapsApiKey
+    }),
   ]
 })
 export class PagesModule { }
