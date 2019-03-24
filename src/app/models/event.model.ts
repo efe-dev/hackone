@@ -2,12 +2,17 @@ import { IMarker } from './marker.model';
 
 type IEventStatus = 'Active' | 'Archived' | 'Cancelled' | 'Postponed';
 
+export interface IEventCategory {
+  name: string;
+  color: string;
+}
+
 export interface IEvent extends IMarker {
   date: string;
   description: string;
   image: string;
-  category: string; // comma seperated
-  status: IEventStatus;
+  category: IEventCategory; // comma seperated
+  status: IEventStatus | any;
 }
 
 export interface NewEvent {

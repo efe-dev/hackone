@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AppColors} from '../../../models/colors.model';
+import {EventService} from '../../../shared/services/event.service';
+import {IEvent} from '../../../models';
 
 interface ICategory {
   name: string;
@@ -17,7 +19,11 @@ export class EventPageComponent implements OnInit {
   listOfOption: Array<{ label: string; value: string }> = [];
   listOfSelectedValue = ['a10', 'c12'];
 
-  constructor() {
+  events: any;
+
+  constructor(
+    private eventService: EventService,
+  ) {
     this.categories = [
       {
         name: 'music',
@@ -51,6 +57,22 @@ export class EventPageComponent implements OnInit {
       children.push({ label: i.toString(36) + i, value: i.toString(36) + i });
     }
     this.listOfOption = children;
+
+    this.events = [];
+    this.eventService.getAllEvents()
+      .then(data => {
+        const response = data.data;
+
+        for (const tmp of response) {
+          const key = Object.keys(tmp)[0];
+          const event = tmp[key];
+          // tslint:disable-next-line
+          event['id'] = key;
+          this.events.push(event);
+        }
+
+      });
+
   }
 
   ngOnInit() {
@@ -58,6 +80,10 @@ export class EventPageComponent implements OnInit {
 
   toggleCategory(event, category: ICategory) {
     category.selected = !category.selected;
+  }
+
+  showOnMap(id: string) {
+  //   a
   }
 
 }

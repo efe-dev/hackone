@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from './shared/services/event.service';
 import storageService from './shared/services/storage.service';
+import {AppColors} from './models/colors.model';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,10 @@ export class AppComponent implements OnInit {
     try {
       const data = await this.eventService.addEvent({
         address: 'xx',
-        category: 'music,concert,rock',
+        category: {
+          name: 'music',
+          color: AppColors.red,
+        },
         coordinates: {
           lat: 50.2649,
           lng: 19.0238

@@ -7,7 +7,7 @@
     <h2>Starting soon...</h2>
     <a href="/events#all-events" class="all-events-link">View All</a>
 
-    <div class="event-card-mini">
+    <div class="event-card-mini" *ngFor="let event of events;">
       <div class="event-image">
         <img src="https://picsum.photos/72?random" alt="event-name" />
       </div>
@@ -15,22 +15,22 @@
       <div class="event-details">
 
         <p class="event-title">
-          Rohan's Exhibition
+          {{event.name}}
         </p>
 
         <p class="event-date">
           <i nz-icon type="clock-circle" theme="outline"></i>
-          September 10, 2019
+          {{event.date | date}}
         </p>
 
         <p class="event-address">
           <i nz-icon type="environment" theme="outline"></i>
-          Warszawska, 10/7
+          {{event.address}}
         </p>
 
       </div>
 
-      <div class="event-action" nz-tooltip nzTitle="Show on map">
+      <div class="event-action" nz-tooltip nzTitle="Show on map" (click)="showOnMap(event.id)">
         <i nz-icon type="environment" theme="outline"></i>
       </div>
     </div>
@@ -85,26 +85,23 @@
 
   <div class="event-feed">
 
-    <div class="event-card" >
+    <div class="event-card" *ngFor="let event of events;">
       <div class="thumbnail">
         <img src="https://picsum.photos/115?random" />
       </div>
-      <p class="title">Rohan's Exhibition</p>
+      <p class="title">{{event.name}}</p>
       <p class="description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat.
+        {{event.description}}
       </p>
       <div class="footer">
         <div class="event-details">
           <p>
             <i nz-icon type="clock-circle" theme="outline"></i>
-            September 10, 2019
+            {{event.date | date}}
           </p>
           <p>
             <i nz-icon type="environment" theme="outline"></i>
-            Warszawska, 10/7
+            {{event.address}}
           </p>
           <p>
             <i nz-icon type="dollar" theme="outline"></i>
@@ -119,7 +116,7 @@
             </button>
           </p>
           <p>
-            <button nz-button nzType="primary" nzBlock>
+            <button nz-button nzType="primary" nzBlock (click)="showOnMap(event.id)">
               <i nz-icon type="environment" theme="outline"></i>
               Show on map
             </button>

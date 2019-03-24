@@ -17,10 +17,12 @@
   padding: 10px;
   color: #163550;
   border-radius: 8px;
-  box-shadow: -2px -2px 8px 0 rgba(245, 34, 45, 0.3);
+  box-shadow: -2px -2px 8px 0 rgba(245, 34, 45, 0.2);
   background: #b7c3e01a;
   background-color: rgba(183, 195, 224, 0.1);
+  background-color: rgba(183, 195, 224, 0.1);
   background-color: var(--palegrey);
+  margin-bottom: 15px;
 
   &:hover {
     background: #b7c3e01a;
@@ -109,6 +111,10 @@
   .footer {
     display: flex;
     justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 50px);
+    margin-bottom: 25px;
   }
 
   .event-details {
@@ -118,6 +124,11 @@
   .event-action {
     width: 45%;
   }
+}
+
+.event-feed {
+  display: flex;
+  justify-content: space-between;
 }
 
 .event-feed-actions {
