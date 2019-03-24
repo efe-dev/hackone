@@ -1,13 +1,8 @@
 /// <reference types="@types/googlemaps" />
-import { Component, OnInit, TemplateRef, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { mapConfig } from './mapConfig';
 import {} from 'googlemaps';
 import { EventService } from 'src/app/shared/services/event.service';
-import {
-  NzMenuDirective,
-  NzDropdownContextComponent,
-  NzDropdownService
-} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-map',
@@ -15,8 +10,6 @@ import {
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
-  private contextMenu: NzDropdownContextComponent;
-  private currentMouseEvent: MouseEvent;
 
   public map = mapConfig;
   public markers = [];
@@ -25,7 +18,6 @@ export class MapComponent implements OnInit {
 
   constructor(
     public eventService: EventService,
-    private dropdownService: NzDropdownService
   ) {}
 
   ngOnInit() {}
