@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AppColors} from '../../../models/colors.model';
 import {EventService} from '../../../shared/services/event.service';
 import {IEvent} from '../../../models';
+import { MessageService } from 'src/app/shared/services/messenger.service';
 
 interface ICategory {
   name: string;
@@ -23,6 +24,7 @@ export class EventPageComponent implements OnInit {
 
   constructor(
     private eventService: EventService,
+    private messengerService: MessageService
   ) {
     this.categories = [
       {
@@ -82,8 +84,8 @@ export class EventPageComponent implements OnInit {
     category.selected = !category.selected;
   }
 
-  showOnMap(id: string) {
-  //   a
+  showOnMap(item) {
+    this.messengerService.sendMessage(item);
   }
 
 }

@@ -5,6 +5,7 @@ import {} from 'googlemaps';
 import { EventService } from 'src/app/shared/services/event.service';
 import CustomMapStyles from './map.styles';
 import {AppColors} from '../../models/colors.model';
+import { MessageService } from '../../shared/services/messenger.service';
 
 @Component({
   selector: 'app-map',
@@ -19,6 +20,7 @@ export class MapComponent implements OnInit {
   public markers = [];
   public mapInstance;
   public firstTime = true;
+  public message;
   public sampleEvents = [
     {
       address: 'Warszawska 10',
@@ -163,7 +165,9 @@ export class MapComponent implements OnInit {
   ];
   public index = 0;
 
-  constructor(public eventService: EventService) {}
+  constructor(public eventService: EventService, private messengerService: MessageService) {
+    this.messengerService.getMessage().subscribe(message => { this.showOnMap(message.text); });
+  }
 
   ngOnInit() {}
 
@@ -266,5 +270,11 @@ export class MapComponent implements OnInit {
     if (this.infoWindow) {
       this.infoWindow.close();
     }
+  }
+
+  public showOnMap(item) {
+    this.map.lat = item.coordinates.lat;
+    this.map.lng = item.coordinates.lng;
+    this.map.zoom = 14;
   }
 }
