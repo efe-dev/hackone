@@ -13,7 +13,7 @@
     [latitude]="marker.lat"
     [longitude]="marker.lng"
     [opacity]="marker.alpha"
-    [iconUrl]="marker.icon"
+    [iconUrl]="{ url: 'assets/icons/' + getMarkerImageUrl(marker.category.name) + '.svg', scaledSize: { width: 30, height: 30 } }"
     (markerClick)="showInfoPopover(markerInfoWindow, marker)"
   >
     <agm-info-window #markerInfoWindow [disableAutoPan]="true">

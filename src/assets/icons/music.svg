@@ -1,0 +1,15 @@
+<svg id="baseline-music_note-24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #ed1c24;
+      }
+    </style>
+  </defs>
+  <path id="Path_9" data-name="Path 9" class="cls-1" d="M0,0H24V24H0Z"/>
+  <path id="Path_10" data-name="Path 10" class="cls-2" d="M12,3V13.55A3.991,3.991,0,1,0,14,17V7h4V3Z"/>
+</svg>

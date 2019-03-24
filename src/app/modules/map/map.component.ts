@@ -14,6 +14,13 @@ import { MessageService } from '../../shared/services/messenger.service';
 })
 export class MapComponent implements OnInit {
   public mapStyles = CustomMapStyles;
+  private availableEventTypes = [
+    'sports',
+    'culture',
+    'music',
+    'city',
+    'workshop'
+  ];
   private infoWindow;
 
   public map = mapConfig;
@@ -26,11 +33,11 @@ export class MapComponent implements OnInit {
       address: 'Warszawska 10',
       category: {
         name: 'culture',
-        color: AppColors.cyan,
+        color: AppColors.cyan
       },
       coordinates: {
         lat: 0,
-        lng: 0,
+        lng: 0
       },
       date: '',
       description: 'This amazing event is nothing you have ever seen!',
@@ -46,7 +53,7 @@ export class MapComponent implements OnInit {
       address: 'Piotra Skargi 1',
       category: {
         name: 'sports',
-        color: AppColors.lime,
+        color: AppColors.lime
       },
       coordinates: {
         lat: 0,
@@ -66,14 +73,15 @@ export class MapComponent implements OnInit {
       address: 'Tajemnicza ulica 15',
       category: {
         name: 'music',
-        color: AppColors.red,
+        color: AppColors.red
       },
       coordinates: {
         lat: 0,
         lng: 0
       },
       date: '',
-      description: 'Come and be amazed by the fact that I\'m still able to write those descriptions at 4AM',
+      description:
+        'Come and be amazed by the fact that I\'m still able to write those descriptions at 4AM',
       image: 'imageUrl',
       name: 'Ed, she run!',
       status: 'Active',
@@ -86,7 +94,7 @@ export class MapComponent implements OnInit {
       address: 'Pomarańczowa 67/4',
       category: {
         name: 'workshop',
-        color: AppColors.purple,
+        color: AppColors.purple
       },
       coordinates: {
         lat: 0,
@@ -106,14 +114,15 @@ export class MapComponent implements OnInit {
       address: 'Muzyczna',
       category: {
         name: 'music',
-        color: AppColors.red,
+        color: AppColors.red
       },
       coordinates: {
         lat: 0,
         lng: 0
       },
       date: '',
-      description: 'Everybody can play! We reserve the right to judge you tho...',
+      description:
+        'Everybody can play! We reserve the right to judge you tho...',
       image: 'imageUrl',
       name: 'Open piano at main plaza!',
       status: 'Active',
@@ -126,14 +135,15 @@ export class MapComponent implements OnInit {
       address: 'Reformacji 9/33',
       category: {
         name: 'workshops',
-        color: AppColors.purple,
+        color: AppColors.purple
       },
       coordinates: {
         lat: 0,
         lng: 0
       },
       date: '',
-      description: 'Feeling lost? You don\'t know what going on? That\'s fine, because neither do we!',
+      description:
+        'Feeling lost? You don\'t know what going on? That\'s fine, because neither do we!',
       image: 'imageUrl',
       name: 'Get yourself sorted out!',
       status: 'Active',
@@ -146,14 +156,15 @@ export class MapComponent implements OnInit {
       address: 'xx',
       category: {
         name: 'city',
-        color: AppColors.gold,
+        color: AppColors.gold
       },
       coordinates: {
         lat: 0,
         lng: 0
       },
       date: '',
-      description: 'You have this great ideas that will make out great town even greater? That\'s great! Come and tell us.',
+      description:
+        'You have this great ideas that will make out great town even greater? That\'s great! Come and tell us.',
       image: 'imageUrl',
       name: 'Fix your city!',
       status: 'Active',
@@ -171,13 +182,20 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {}
 
+  public getMarkerImageUrl(type: string = null): string {
+    if (type && this.availableEventTypes.indexOf(type) > -1) {
+      return type;
+    }
+    return 'default';
+  }
+
   public mapClicked(map) {
     const coords = map.coords;
 
     const event = this.sampleEvents[this.index++];
     event.coordinates = {
       lat: coords.lat,
-        lng: coords.lng
+      lng: coords.lng
     };
     event.date = new Date().toISOString();
 

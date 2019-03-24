@@ -1,0 +1,15 @@
+<svg id="baseline-book-24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #61cbe6;
+      }
+    </style>
+  </defs>
+  <path id="Path_1" data-name="Path 1" class="cls-1" d="M0,0H24V24H0Z"/>
+  <path id="Path_2" data-name="Path 2" class="cls-2" d="M18,2H6A2.006,2.006,0,0,0,4,4V20a2.006,2.006,0,0,0,2,2H18a2.006,2.006,0,0,0,2-2V4A2.006,2.006,0,0,0,18,2ZM6,4h5v8L8.5,10.5,6,12Z"/>
+</svg>
