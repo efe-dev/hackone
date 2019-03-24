@@ -7,7 +7,7 @@
     <h2>Starting soon...</h2>
     <a href="/events#all-events" class="all-events-link">View All</a>
 
-    <div class="event-card-mini" *ngFor="let event of events;">
+    <div class="event-card-mini" *ngFor="let event of events;" [ngClass]="'event-card-mini-'+getColorName(event.category.color)">
       <div class="event-image">
         <img [src]="'https://picsum.photos/72?random#'+event.name" alt="event-name" />
       </div>
