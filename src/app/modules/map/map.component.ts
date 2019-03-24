@@ -4,6 +4,7 @@ import { mapConfig } from './mapConfig';
 import {} from 'googlemaps';
 import { EventService } from 'src/app/shared/services/event.service';
 import CustomMapStyles from './map.styles';
+import {AppColors} from '../../models/colors.model';
 
 @Component({
   selector: 'app-map',
@@ -18,6 +19,149 @@ export class MapComponent implements OnInit {
   public markers = [];
   public mapInstance;
   public firstTime = true;
+  public sampleEvents = [
+    {
+      address: 'Warszawska 10',
+      category: {
+        name: 'culture',
+        color: AppColors.cyan,
+      },
+      coordinates: {
+        lat: 0,
+        lng: 0,
+      },
+      date: '',
+      description: 'This amazing event is nothing you have ever seen!',
+      image: 'maybe.later',
+      name: 'The Art of Hacking',
+      status: 'Active',
+      type: {
+        description: 'asd',
+        name: 'event'
+      }
+    },
+    {
+      address: 'Piotra Skargi 1',
+      category: {
+        name: 'sports',
+        color: AppColors.lime,
+      },
+      coordinates: {
+        lat: 0,
+        lng: 0
+      },
+      date: '',
+      description: 'Pełen emocji mecz transmitowany na żywo!',
+      image: 'imageUrl',
+      name: 'Lokalna transmisja piłki nożnej!',
+      status: 'Active',
+      type: {
+        description: 'asd',
+        name: 'event'
+      }
+    },
+    {
+      address: 'Tajemnicza ulica 15',
+      category: {
+        name: 'music',
+        color: AppColors.red,
+      },
+      coordinates: {
+        lat: 0,
+        lng: 0
+      },
+      date: '',
+      description: 'Come and be amazed by the fact that I\'m still able to write those descriptions at 4AM',
+      image: 'imageUrl',
+      name: 'Ed, she run!',
+      status: 'Active',
+      type: {
+        description: 'asd',
+        name: 'event'
+      }
+    },
+    {
+      address: 'Pomarańczowa 67/4',
+      category: {
+        name: 'workshop',
+        color: AppColors.purple,
+      },
+      coordinates: {
+        lat: 0,
+        lng: 0
+      },
+      date: '',
+      description: 'Can you cook? I certainly can\'t, please send help!',
+      image: 'imageUrl',
+      name: 'You can cook!',
+      status: 'Active',
+      type: {
+        description: 'asd',
+        name: 'event'
+      }
+    },
+    {
+      address: 'Muzyczna',
+      category: {
+        name: 'music',
+        color: AppColors.red,
+      },
+      coordinates: {
+        lat: 0,
+        lng: 0
+      },
+      date: '',
+      description: 'Everybody can play! We reserve the right to judge you tho...',
+      image: 'imageUrl',
+      name: 'Open piano at main plaza!',
+      status: 'Active',
+      type: {
+        description: 'asd',
+        name: 'event'
+      }
+    },
+    {
+      address: 'Reformacji 9/33',
+      category: {
+        name: 'workshops',
+        color: AppColors.purple,
+      },
+      coordinates: {
+        lat: 0,
+        lng: 0
+      },
+      date: '',
+      description: 'Feeling lost? You don\'t know what going on? That\'s fine, because neither do we!',
+      image: 'imageUrl',
+      name: 'Get yourself sorted out!',
+      status: 'Active',
+      type: {
+        description: 'asd',
+        name: 'event'
+      }
+    },
+    {
+      address: 'xx',
+      category: {
+        name: 'city',
+        color: AppColors.gold,
+      },
+      coordinates: {
+        lat: 0,
+        lng: 0
+      },
+      date: '',
+      description: 'You have this great ideas that will make out great town even greater? That\'s great! Come and tell us.',
+      image: 'imageUrl',
+      name: 'Fix your city!',
+      status: 'Active',
+      type: {
+        description: 'asd',
+        name: 'event'
+      }
+    }
+  ];
+  public index = 0;
 
   constructor(public eventService: EventService) {}
 
@@ -25,23 +169,15 @@ export class MapComponent implements OnInit {
 
   public mapClicked(map) {
     const coords = map.coords;
-    // this.eventService.addEvent({
-    //   address: 'xx',
-    //   category: 'music,concert,rock',
-    //   coordinates: {
-    //     lat: coords.lat,
-    //     lng: coords.lng
-    //   },
-    //   date: new Date().toISOString(),
-    //   description: 'desc',
-    //   image: 'imageUrl',
-    //   name: 'Event name',
-    //   status: 'Active',
-    //   type: {
-    //     description: 'asd',
-    //     name: 'event'
-    //   }
-    // });
+
+    const event = this.sampleEvents[this.index++];
+    event.coordinates = {
+      lat: coords.lat,
+        lng: coords.lng
+    };
+    event.date = new Date().toISOString();
+
+    this.eventService.addEvent(event);
   }
 
   public mapReady(map) {
