@@ -1,9 +1,13 @@
 /// <reference types="@types/googlemaps" />
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, HostListener } from '@angular/core';
 import { mapConfig } from './mapConfig';
 import {} from 'googlemaps';
 import { EventService } from 'src/app/shared/services/event.service';
-import storageService from '../../shared/services/storage.service';
+import {
+  NzMenuDirective,
+  NzDropdownContextComponent,
+  NzDropdownService
+} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-map',
@@ -11,20 +15,22 @@ import storageService from '../../shared/services/storage.service';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
-
-  @ViewChild('contextMenu') contextMenu: ElementRef;
+  private contextMenu: NzDropdownContextComponent;
+  private currentMouseEvent: MouseEvent;
 
   public map = mapConfig;
   public markers = [];
   public mapInstance;
   public firstTime = true;
 
-  constructor(public eventService: EventService) {}
+  constructor(
+    public eventService: EventService,
+    private dropdownService: NzDropdownService
+  ) {}
 
   ngOnInit() {}
 
   public mapClicked(map) {
-    this.removeContextMenu();
     const coords = map.coords;
     this.eventService.addEvent({
       address: 'xx',
@@ -47,7 +53,7 @@ export class MapComponent implements OnInit {
 
   public mapReady(map) {
     this.mapInstance = map;
-    this.eventService.getAllEvents().then((events) => {
+    this.eventService.getAllEvents().then(events => {
       if (events) {
         for (let i = 0; i < events.data.length; i++) {
           const event: any = events.data[i];
@@ -60,7 +66,7 @@ export class MapComponent implements OnInit {
         }
       }
     });
-    this.eventService.listenAllEvents().subscribe((events) => {
+    this.eventService.listenAllEvents().subscribe(events => {
       if (events) {
         if (!this.firstTime) {
           for (let i = 0; i < events.data.length; i++) {
@@ -106,19 +112,6 @@ export class MapComponent implements OnInit {
     this.eventService.deleteEvent(marker.id);
   }
 
-  public markerOptions(id) {
-    const e: any = window.event;
-    const element = this.contextMenu.nativeElement;
-    element.style.top = e.clientY + 'px';
-    element.style.left = e.clientX + 'px';
-    element.style.display = 'block';
-  }
-
-  public removeContextMenu() {
-    const element = this.contextMenu.nativeElement;
-    element.style.display = 'none';
-  }
-
   public click() {
     this.setToTrafficLayer();
   }
@@ -126,5 +119,23 @@ export class MapComponent implements OnInit {
   public setToTrafficLayer() {
     const trafficLayer = new google.maps.TrafficLayer();
     trafficLayer.setMap(this.mapInstance);
+  }
+
+  public showContextMenu($event, template: TemplateRef<void>): void {
+    this.dropdownService.dispose();
+    setTimeout(() => {
+      console.log(this.currentMouseEvent, template);
+      this.contextMenu = this.dropdownService.create(this.currentMouseEvent, template);
+    }, 200);
+  }
+
+  public closeContextMenu(event: NzMenuDirective): void {
+    console.log(event);
+    console.log('context menu event', event);
+  }
+
+  @HostListener('click', ['$event'])
+  public onMouseClick(event: MouseEvent): void {
+    this.currentMouseEvent = event;
   }
 }
